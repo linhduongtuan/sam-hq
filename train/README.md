@@ -78,7 +78,7 @@ python -m torch.distributed.launch --nproc_per_node=8 train.py --checkpoint ./pr
 python -m torch.distributed.launch --nproc_per_node=8 train.py --checkpoint ./pretrained_checkpoint/sam_vit_h_4b8939.pth --model-type vit_h --output work_dirs/hq_sam_h
 ```
 
-### If training phase above raises an error related to distributed computing, please use:
+### If training phase above raises an error related to distributed computing, please use `torchrun` instead of using `python -m torch.distributed.launch`:
 ```
 torchrun --nproc_per_node=8 train.py --checkpoint ./pretrained_checkpoint/sam_vit_h_4b8939.pth --model-type vit_h --output work_dirs/hq_sam_h
 ```
