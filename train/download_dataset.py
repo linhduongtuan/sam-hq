@@ -36,33 +36,33 @@ dataset_names = [
     
 ]
 preconfigured_dataset = "axondeepseg"
-preconfigured_dataset = "bcss"
-preconfigured_dataset = "cem"
-preconfigured_dataset = "covid_if"
-preconfigured_dataset = "cremi"
-preconfigured_dataset = "deepbacs"
-preconfigured_dataset = "dsb"
-preconfigured_dataset = "hpa"
-preconfigured_dataset = "isbi2012"
-preconfigured_dataset = "kasthuri"
-preconfigured_dataset = "livecell"
-preconfigured_dataset = "lizard"
-preconfigured_dataset = "lucchi"
-preconfigured_dataset = "mitoem"
-preconfigured_dataset = "monusac"
-preconfigured_dataset = "monuseg"
-preconfigured_dataset = "mouse_embryo"
-preconfigured_dataset = "neurips_cell_seg"
-preconfigured_dataset = "nuc_mm"
-preconfigured_dataset = "pannuke"
-preconfigured_dataset = "plantseg"
-preconfigured_dataset = "platynereis"
-preconfigured_dataset = "pnas_arabiopsis"
-preconfigured_dataset = "snemi"
-preconfigured_dataset = "sponge_em"
-preconfigured_dataset = "tissuenet"
-preconfigured_dataset = "uro_cell"
-preconfigured_dataset = "vnc_mitos"
+#preconfigured_dataset = "bcss"
+#preconfigured_dataset = "cem"
+#preconfigured_dataset = "covid_if"
+#preconfigured_dataset = "cremi"
+#preconfigured_dataset = "deepbacs"
+#preconfigured_dataset = "dsb"
+#preconfigured_dataset = "hpa"
+#preconfigured_dataset = "isbi2012"
+#preconfigured_dataset = "kasthuri"
+#preconfigured_dataset = "livecell"
+#preconfigured_dataset = "lizard"
+#preconfigured_dataset = "lucchi"
+#preconfigured_dataset = "mitoem"
+#preconfigured_dataset = "monusac"
+#preconfigured_dataset = "monuseg"
+#preconfigured_dataset = "mouse_embryo"
+#preconfigured_dataset = "neurips_cell_seg"
+#preconfigured_dataset = "nuc_mm"
+#preconfigured_dataset = "pannuke"
+#preconfigured_dataset = "plantseg"
+#preconfigured_dataset = "platynereis"
+#preconfigured_dataset = "pnas_arabiopsis"
+#preconfigured_dataset = "snemi"
+#preconfigured_dataset = "sponge_em"
+#preconfigured_dataset = "tissuenet"
+#preconfigured_dataset = "uro_cell"
+#preconfigured_dataset = "vnc_mitos"
 # Where to download the training data (the data will be downloaded only once).
 # If you work in google colab you may want to adapt this path to be on your google drive, in order
 # to not loose the data after each session.
@@ -116,10 +116,6 @@ label_key = ""
 train_rois = None
 val_rois = None
 patch_shape = (512, 512)
-
-dataset_names = [
-    "covid_if", "dsb", "hpa", "isbi2012", "livecell", "vnc-mitos", "lucchi"
-]
 
 
 def check_data(data_paths, label_paths, rois):
