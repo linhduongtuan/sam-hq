@@ -157,22 +157,27 @@ pretrained_checkpoint
 
 ## 3. Training
 #### 3.1. Training HQ-Micro-Sam: *Work in Progress*
+
 ```
-python -m torch.distributed.launch --nproc_per_node=<num_gpus> train_micro_*.py --checkpoint <path/to/checkpoint> --model-type <model_type> --output <path/to/output>
+torchrun --nproc_per_node=<num_gpus> train_micro_*.py --checkpoint <path/to/checkpoint> --model-type <model_type> --output <path/to/output>
 ```
+
 *To train generalist models using Light Microscope datasets*
+
 ```
-python -m torch.distributed.launch --nproc_per_node=8 train_micro_LM_generalist.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_sam_b_LM_generalist
+torchrun --nproc_per_node=8 train_micro_LM_generalist.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_micro_sam_b_LM_generalist
 ```
 
 *To train specialist models using Light Microscope datasets*
+
 ```
-python -m torch.distributed.launch --nproc_per_node=8 train_micro_LM_specialist.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_sam_b_LM_specialist
+torchrun --nproc_per_node=8 train_micro_LM_specialist.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_micro_sam_b_LM_specialist
 ```
 
-*To train models using Electro Microscope datasets*
+*To train models using Electron Microscope datasets*
+
 ```
-python -m torch.distributed.launch --nproc_per_node=8 train_micro_EM.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_sam_b_EM
+torchrun --nproc_per_node=8 train_micro_EM.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_micro_sam_b_EM
 ```
 
 #### 3.2. To train HQ-SAM on HQSeg-44K dataset
@@ -182,11 +187,13 @@ python -m torch.distributed.launch --nproc_per_node=<num_gpus> train.py --checkp
 ```
 
 *Example HQ-SAM-L training script*
+
 ```
 python -m torch.distributed.launch --nproc_per_node=8 train.py --checkpoint ./pretrained_checkpoint/sam_vit_l_0b3195.pth --model-type vit_l --output work_dirs/hq_sam_l
 ```
 
 *Example HQ-SAM-B training script*
+
 ```
 python -m torch.distributed.launch --nproc_per_node=8 train.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_sam_b
 ```
