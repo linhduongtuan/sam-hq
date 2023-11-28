@@ -8,6 +8,7 @@ We organize the training folder as follows.
 ```
 train
 |____data
+|____data_preparation
 |____pretrained_checkpoint
 |____train.py
 |____utils
