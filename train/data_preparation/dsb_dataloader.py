@@ -1,15 +1,15 @@
 import torch_em.data.datasets as torchem_data
 
-data_path = "/Users/linh/Downloads/cv/torch-em/experiments/training_data/dsb"
+data_path = "./data/dsb"
 
 patch_shape = (512, 512)
 def get_dsb_dataloaders(path):
-    train_loader = torchem_data.get_dsb_loader(path, 
+    train_loader = torchem_data.get_dsb_loader(path=data_path, 
                                                     patch_shape=patch_shape,
                                                     batch_size=8,
                                                     download=False,
                                                     split='train')
-    val_loader = torchem_data.get_dsb_loader(path, 
+    val_loader = torchem_data.get_dsb_loader(path=data_path, 
                                                   patch_shape=patch_shape,
                                                   batch_size=8,
                                                   download=False,

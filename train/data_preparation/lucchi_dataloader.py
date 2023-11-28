@@ -1,6 +1,6 @@
 import torch_em.data.datasets as torchem_data
 
-data_path = "/Users/linh/Downloads/cv/torch-em/experiments/training_data/lucchi"
+data_path = "./data/lucchi"
 
 patch_shape = (3, 512, 512)
 def get_lucchi_dataloaders(path):

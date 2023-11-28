@@ -8,29 +8,29 @@ from torch_em.data.datasets.mitoem import get_mitoem_dataset
 patch_shape_2=(512, 512)
 patch_shape_3=(1, 512, 512)
 
-cremi_train_dataset = get_cremi_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/cremi",  patch_shape=patch_shape_3)
-cremi_val_dataset = get_cremi_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/cremi",  patch_shape=patch_shape_3)
+cremi_train_dataset = get_cremi_dataset("./data/cremi",  patch_shape=patch_shape_3)
+cremi_val_dataset = get_cremi_dataset("./data/cremi",  patch_shape=patch_shape_3)
 
 #hpa_testing_dataset = get_hpa_segmentation_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/hpa", split="test", patch_shape=patch_shape )
 
 #lizard_testing_dataset = get_lizard_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/lizard", patch_shape=patch_shape)
 
-axondeepseg_train_dataset = get_axondeepseg_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/axondeepseg",
+axondeepseg_train_dataset = get_axondeepseg_dataset("./data/axondeepseg",
                                                        download=True, 
                                                        name="sem", #"tem"
-                                                        split="train",
-                                                        patch_shape=patch_shape_3)
-axondeepseg_val_dataset = get_axondeepseg_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/axondeepseg",
+                                                       split="train",
+                                                       patch_shape=patch_shape_3)
+axondeepseg_val_dataset = get_axondeepseg_dataset("./data/axondeepseg",
                                                        download=True, 
                                                        name="sem", #"tem"
                                                         split="val",
                                                         patch_shape=patch_shape_3)   
 
-mitoem_train_dataset = get_mitoem_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/mitoem",
+mitoem_train_dataset = get_mitoem_dataset("./data/mitoem",
                                                        download=True, # "nuclei"
                                                         splits="train",
                                                         patch_shape=patch_shape_3)
-mitoem_val_dataset = get_mitoem_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/mitoem",
+mitoem_val_dataset = get_mitoem_dataset("./data/mitoem",
                                                        download=True, # "nuclei"
                                                         splis="val",
                                                         patch_shape=patch_shape_3)                                                     

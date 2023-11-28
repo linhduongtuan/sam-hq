@@ -5,7 +5,7 @@ import torch_em.data.datasets as torchem_data
 from torch_em.model import UNet2d
 from torch_em.util.debug import check_loader, check_trainer
 
-download_folder = "/Users/linh/Downloads/cv/torch-em/experiments/training_data/livecell"
+download_folder = "./data/livecell"
 # CONFIGURE ME
 
 # Whether to add a foreground channel (1 for all labels that are not zero) to the target.

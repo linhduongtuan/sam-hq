@@ -1,42 +1,26 @@
 from torch.utils.data import DataLoader, ConcatDataset
 from torch_em.data.datasets.deepbacs import get_deepbacs_dataset
-from torch_em.data.datasets.dsb import get_dsb_dataset
-from torch_em.data.datasets.neurips_cell_seg import get_neurips_cellseg_supervised_dataset
 from torch_em.data.datasets.livecell import get_livecell_dataset
-from torch_em.data.datasets.plantseg import get_plantseg_dataset
 from torch_em.data.datasets.tissuenet import get_tissuenet_dataset
 
 patch_shape=(512, 512)
 
-deepbacs_train_dataset = get_deepbacs_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/deepbacs/",
+deepbacs_train_dataset = get_deepbacs_dataset("./data/deepbacs/",
                                               patch_shape=patch_shape,
                                               split="train")
-deepbacs_val_dataset = get_deepbacs_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/deepbacs/", 
+deepbacs_val_dataset = get_deepbacs_dataset("./data/deepbacs/", 
                                               patch_shape=patch_shape,
                                               split="test")
 
-#dsb_train_dataset = get_dsb_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/dsb", split="train", patch_shape=(512, 512))
-#dsb_val_dataset = get_dsb_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/dsb", split="test", patch_shape=(512, 512))
+livecell_train_dataset = get_livecell_dataset("./data/livecell", split="train", patch_shape=patch_shape)
+livecell_val_dataset = get_livecell_dataset("./data/livecell", split="val", patch_shape=patch_shape)
 
-livecell_train_dataset = get_livecell_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/livecell", split="train", patch_shape=(512, 512))
-livecell_val_dataset = get_livecell_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/livecell", split="val", patch_shape=(512, 512))
-
-#neurips_cell_seg_train_dataset = get_neurips_cellseg_supervised_dataset(, 
-#                                                                        patch_shape=patch_shape,
-#                                                                        split="train" )
-#neurips_cell_seg_val_dataset = get_neurips_cellseg_supervised_dataset(, 
-#                                                                        patch_shape=patch_shape,
-#                                                                        plit="val" )
-
-#plantseg_train_data = get_plantseg_dataset(path="/Users/linh/Downloads/cv/torch-em/experiments/training_data/plantseg",  patch_shape=(1, 512, 512), name="root", split="train")
-#plantseg_val_data = get_plantseg_dataset(path="/Users/linh/Downloads/cv/torch-em/experiments/training_data/plantseg", patch_shape=(1, 512, 512), name="root", split="val")
-
-tissuenet_train_dataset = get_tissuenet_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/tissuenet/",  
+tissuenet_train_dataset = get_tissuenet_dataset("./data/tissuenet/",  
                                                 raw_channel="nucleus", #"cell", "rgb",
                                                 label_channel="nucleus", #"cell",
                                                 patch_shape=patch_shape,
                                                 split="train")
-tissuenet_val_dataset = get_tissuenet_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/tissuenet",
+tissuenet_val_dataset = get_tissuenet_dataset("./data/tissuenet",
                                               raw_channel="nucleus", #"cell", "rgb",
                                               label_channel="nucleus", #"cell", 
                                               patch_shape=patch_shape,
@@ -57,7 +41,6 @@ concat_val_datasets = ConcatDataset([deepbacs_val_dataset,
                                        tissuenet_val_dataset 
                                        ])
 
-#val_loader = ConcatDataset([dsb_train_dataset, livecell_val_dataset])
 train_datasets_loaders = DataLoader(dataset=concat_train_datasets, batch_size=8)
 val_datasets_loaders = DataLoader(dataset=concat_val_datasets, batch_size=8)
 

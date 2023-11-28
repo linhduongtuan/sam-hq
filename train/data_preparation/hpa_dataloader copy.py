@@ -1,5 +1,5 @@
 import torch_em.data.datasets as torchem_data
-data_path = "/Users/linh/Downloads/cv/torch-em/experiments/training_data/hpa"
+data_path = "./data/hpa"
 
 patch_shape = (512, 512)
 def get_hpa_dataloaders(path):

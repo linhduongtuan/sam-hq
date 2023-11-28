@@ -8,35 +8,35 @@ from torch_em.data.datasets.tissuenet import get_tissuenet_dataset
 
 patch_shape=(512, 512)
 
-deepbacs_train_dataset = get_deepbacs_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/deepbacs/",
+deepbacs_train_dataset = get_deepbacs_dataset("./data/deepbacs/",
                                               patch_shape=patch_shape,
                                               split="train")
-deepbacs_val_dataset = get_deepbacs_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/deepbacs/", 
+deepbacs_val_dataset = get_deepbacs_dataset("./data/deepbacs/", 
                                               patch_shape=patch_shape,
                                               split="test")
 
-dsb_train_dataset = get_dsb_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/dsb", split="train", patch_shape=(512, 512))
-dsb_val_dataset = get_dsb_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/dsb", split="test", patch_shape=(512, 512))
+dsb_train_dataset = get_dsb_dataset("./data/dsb", split="train", patch_shape=(512, 512))
+dsb_val_dataset = get_dsb_dataset("./data/dsb", split="test", patch_shape=(512, 512))
 
-livecell_train_dataset = get_livecell_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/livecell", split="train", patch_shape=(512, 512))
-livecell_val_dataset = get_livecell_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/livecell", split="val", patch_shape=(512, 512))
+livecell_train_dataset = get_livecell_dataset("./data/livecell", split="train", patch_shape=(512, 512))
+livecell_val_dataset = get_livecell_dataset("./data/livecell", split="val", patch_shape=(512, 512))
 
-neurips_cell_seg_train_dataset = get_neurips_cellseg_supervised_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/NeurIPS22-CellSeg",
+neurips_cell_seg_train_dataset = get_neurips_cellseg_supervised_dataset("./data/NeurIPS22-CellSeg",
                                                                         patch_shape=patch_shape,
                                                                         split="train" )
-neurips_cell_seg_val_dataset = get_neurips_cellseg_supervised_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/NeurIPS22-CellSeg",
+neurips_cell_seg_val_dataset = get_neurips_cellseg_supervised_dataset("./data/NeurIPS22-CellSeg",
                                                                         patch_shape=patch_shape,
                                                                         split="val" )
 
-plantseg_train_dataset = get_plantseg_dataset(path="/Users/linh/Downloads/cv/torch-em/experiments/training_data/plantseg",  patch_shape=(1, 512, 512), name="root", split="train")
-plantseg_val_dataset = get_plantseg_dataset(path="/Users/linh/Downloads/cv/torch-em/experiments/training_data/plantseg", patch_shape=(1, 512, 512), name="root", split="val")
+plantseg_train_dataset = get_plantseg_dataset(path="./data/plantseg",  patch_shape=(1, 512, 512), name="root", split="train")
+plantseg_val_dataset = get_plantseg_dataset(path="./data/plantseg", patch_shape=(1, 512, 512), name="root", split="val")
 
-tissuenet_train_dataset = get_tissuenet_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/tissuenet/",  
+tissuenet_train_dataset = get_tissuenet_dataset("./data/tissuenet/",  
                                                 raw_channel="nucleus", #"cell", "rgb",
                                                 label_channel="nucleus", #"cell",
                                                 patch_shape=patch_shape,
                                                 split="train")
-tissuenet_val_dataset = get_tissuenet_dataset("/Users/linh/Downloads/cv/torch-em/experiments/training_data/tissuenet",
+tissuenet_val_dataset = get_tissuenet_dataset("./data/tissuenet",
                                               raw_channel="nucleus", #"cell", "rgb",
                                               label_channel="nucleus", #"cell", 
                                               patch_shape=patch_shape,
