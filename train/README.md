@@ -19,10 +19,112 @@ train
 ```
 
 ## 1. Data Preparation
+### Expected dataset structure for HQ-Micro-SAM
 
-HQSeg-44K can be downloaded from [hugging face link](https://huggingface.co/sam-hq-team/sam-hq-training/tree/main/data)
+Install the `torch_em` library, I highly recommand installing the `torch_em` library using conda as follows:
+
+```
+conda install -c conda-forge torch_em
+```
+
+To prepare datasets, we utilize the `torch_em` repository for downloading and preprocessing each dataset.
+If you want to load and use a single dataset for training and/or inference, follow this step:
+```
+python data_preration/livecell_dataloader.py
+```
+If you intend to train a model using a concatenated dataset, such as training a Light Microscopy generalist model, please use:
+```
+python data_preparation/concat_LM_training_generalist.py
+```
+```
+data
+|_____axondeepseg
+|    |____sem
+|    |____tem
+|_____covid_if
+|    |____train
+|    |____val
+|_____cremi
+|_____deepbacs/mixed    
+|    |____training
+|    |____test
+|_____dsb
+|    |____train
+|    |  |___images
+|    |  |___masks
+|    |____test
+|       |___images
+|       |___masks
+|______hpa/hpa_dataset_v2
+|    |____train
+|    |____val
+|    |____test
+|______livecell
+|    |____annotations
+|    |____images
+|    |____train.json
+|    |____val.json
+|______lucchi
+|    |____lucchi_train.h5
+|    |____luchi_test.h5
+|______mitoEM
+|    |____human_test.n5
+|    |____human_train.n5
+|    |____human_val.n5
+|    |____rat_test.n5
+|    |____rat_train.n5
+|    |____rat_val.n5
+|______mouse_embryo
+|    |____Membrane
+|    |  |___train
+|    |  |___val
+|    |____Nuclei
+|    |  |___train
+|    |  |___val
+|    |____thumbnails 
+|______NeuIPS22-CellSeg
+|    |____Testing
+|    |  |___Hidden
+|    |  |___Public
+|    |____TrainingUnlabeled
+|    |____TrainLabeled
+|    |  |___images
+|    |  |___labels
+|    |  |___unlabeled
+|    |____Tuning
+|______plantseg
+|    |____nuclei_train
+|    |____ovulus_train
+|    |____ovulus_val
+|    |____root_train
+|    |____root_val
+|______tissuenet
+|    |____mixed
+|    |   |___test
+|    |   |  |___source
+|    |   |  |___target
+|    |   |___training
+|    |   |  |___source
+|    |   |  |___target
+|    |____test
+|    |   |___image_0000.zarr
+|    |   |   |___labels
+|    |   |   |___raw
+|    |   ....
+|    |____train
+|    |   |___image_0000.zarr
+|    |   |   |___labels
+|    |   |   |___raw
+|    |   ....
+|    |____val
+|    |   |___image_0000.zarr
+|    |   |   |___labels
+|    |   |   |___raw
+|    |   .... 
+```
 
 ### Expected dataset structure for HQSeg-44K
+HQSeg-44K can be downloaded from [hugging face link](https://huggingface.co/sam-hq-team/sam-hq-training/tree/main/data)
 
 ```
 data
@@ -57,6 +159,27 @@ pretrained_checkpoint
 ```
 
 ## 3. Training
+#### 3.1. Training HQ-Micro-Sam: *Work in Progress*
+```
+python -m torch.distributed.launch --nproc_per_node=<num_gpus> train_micro_*.py --checkpoint <path/to/checkpoint> --model-type <model_type> --output <path/to/output>
+```
+to train generalist models using Light Microscope datasets
+```
+python -m torch.distributed.launch --nproc_per_node=8 train_micro_LM_generalist.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_sam_b_LM_generalist
+```
+
+
+to train specialist models using Light Microscope datasets
+```
+python -m torch.distributed.launch --nproc_per_node=8 train_micro_LM_specialist.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_sam_b_LM_specialist
+```
+
+to train models using Electro Microscope datasets
+```
+python -m torch.distributed.launch --nproc_per_node=8 train_micro_EM.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_sam_b_EM
+```
+
+
 To train HQ-SAM on HQSeg-44K dataset
 
 ```
