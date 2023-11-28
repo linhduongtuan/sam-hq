@@ -26,7 +26,7 @@ conda install -c conda-forge torch_em
 To prepare datasets, we utilize the `torch_em` repository for downloading and preprocessing each dataset.
 If you want to load and use a single dataset for training and/or inference, follow this step:
 ```
-python data_preration/livecell_dataloader.py
+python data_prepration/livecell_dataloader.py
 ```
 If you intend to train a model using a concatenated dataset, such as training a Light Microscopy generalist model, please use:
 ```
