@@ -20,7 +20,6 @@ train
 ```
 
 ## 1. Data Preparation
-### Expected dataset structure for HQ-Micro-SAM
 
 Install the `torch_em` library, I highly recommand installing the `torch_em` library using conda as follows:
 
@@ -37,6 +36,7 @@ If you intend to train a model using a concatenated dataset, such as training a 
 ```
 python data_preparation/concat_LM_training_generalist.py
 ```
+### Expected dataset structure for HQ-Micro-SAM
 ```
 data
 |_____axondeepseg
