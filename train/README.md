@@ -1,8 +1,4 @@
-# Training instruction for HQ-SAM
-
-> [**Segment Anything in High Quality**](https://arxiv.org/abs/2306.01567)           
-> Lei Ke, Mingqiao Ye, Martin Danelljan, Yifan Liu, Yu-Wing Tai, Chi-Keung Tang, Fisher Yu \
-> ETH Zurich & HKUST 
+# Training instruction for HQ-Micro-SAM
 
 We organize the training folder as follows.
 ```
@@ -269,3 +265,8 @@ python -m torch.distributed.launch --nproc_per_node=1 train.py --checkpoint ./pr
 ```
 python -m torch.distributed.launch --nproc_per_node=1 train.py --checkpoint ./pretrained_checkpoint/sam_vit_l_0b3195.pth --model-type vit_l --output work_dirs/hq_sam_l --eval --restore-model work_dirs/hq_sam_l/epoch_11.pth --visualize
 ```
+
+> Mostly borrowed this work from [**Segment Anything in High Quality**](https://arxiv.org/abs/2306.01567)           
+> Lei Ke, Mingqiao Ye, Martin Danelljan, Yifan Liu, Yu-Wing Tai, Chi-Keung Tang, Fisher Yu \
+> ETH Zurich & HKUST
+> 
