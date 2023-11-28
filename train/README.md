@@ -164,40 +164,38 @@ pretrained_checkpoint
 ```
 python -m torch.distributed.launch --nproc_per_node=<num_gpus> train_micro_*.py --checkpoint <path/to/checkpoint> --model-type <model_type> --output <path/to/output>
 ```
-to train generalist models using Light Microscope datasets
+*To train generalist models using Light Microscope datasets*
 ```
 python -m torch.distributed.launch --nproc_per_node=8 train_micro_LM_generalist.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_sam_b_LM_generalist
 ```
 
-
-to train specialist models using Light Microscope datasets
+*To train specialist models using Light Microscope datasets*
 ```
 python -m torch.distributed.launch --nproc_per_node=8 train_micro_LM_specialist.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_sam_b_LM_specialist
 ```
 
-to train models using Electro Microscope datasets
+*To train models using Electro Microscope datasets*
 ```
 python -m torch.distributed.launch --nproc_per_node=8 train_micro_EM.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_sam_b_EM
 ```
 
-
-To train HQ-SAM on HQSeg-44K dataset
+#### 3.2. To train HQ-SAM on HQSeg-44K dataset
 
 ```
 python -m torch.distributed.launch --nproc_per_node=<num_gpus> train.py --checkpoint <path/to/checkpoint> --model-type <model_type> --output <path/to/output>
 ```
 
-### Example HQ-SAM-L training script
+*Example HQ-SAM-L training script*
 ```
 python -m torch.distributed.launch --nproc_per_node=8 train.py --checkpoint ./pretrained_checkpoint/sam_vit_l_0b3195.pth --model-type vit_l --output work_dirs/hq_sam_l
 ```
 
-### Example HQ-SAM-B training script
+*Example HQ-SAM-B training script*
 ```
 python -m torch.distributed.launch --nproc_per_node=8 train.py --checkpoint ./pretrained_checkpoint/sam_vit_b_01ec64.pth --model-type vit_b --output work_dirs/hq_sam_b
 ```
 
-### Example HQ-SAM-H training script
+*Example HQ-SAM-H training script*
 ```
 python -m torch.distributed.launch --nproc_per_node=8 train.py --checkpoint ./pretrained_checkpoint/sam_vit_h_4b8939.pth --model-type vit_h --output work_dirs/hq_sam_h
 ```
@@ -208,18 +206,66 @@ torchrun --nproc_per_node=8 train.py --checkpoint ./pretrained_checkpoint/sam_vi
 ```
 
 ## 4. Evaluation
-To evaluate on 4 HQ-datasets
+### 4.1. To evaluate on 5 Light Microscope datasets: *Working in Progress*
+
+```
+torchrun --nproc_per_node=<num_gpus> train_micro_LM_*.py --checkpoint <path/to/checkpoint> --model-type <model_type> --output <path/to/output> --eval --restore-model <path/to/training_checkpoint>
+```
+
+*Example HQ-Micro-SAM-L generalist evaluation script for 5 testing Light Microscopy datasets*
+
+```
+torchrun train_micro_LM_generalist.py --checkpoint ./pretrained_checkpoint/sam_vit_l_0b3195.pth --model-type vit_l --output work_dirs/hq_micro_sam_l_generalist --eval --restore-model work_dirs/hq_micro_sam_l_generalist/epoch_11.pth
+```
+
+*Example HQ-Micro-SAM-L generalist evaluation script for 5 testing Light Microscopy datasets*
+
+```
+torchrun train_micro_LM_generalist.py --checkpoint ./pretrained_checkpoint/sam_vit_l_0b3195.pth --model-type vit_l --output work_dirs/hq_micro_sam_l_generalist --eval --restore-model work_dirs/hq_micro_sam_l_generalist/epoch_11.pth
+```
+
+*Example HQ-Micro-SAM-L specialist evaluation script for 5 testing Light Microscopy datasets*
+
+```
+torchrun train_micro_LM_generalist.py --checkpoint ./pretrained_checkpoint/sam_vit_l_0b3195.pth --model-type vit_l --output work_dirs/hq_micro_sam_l_specialist --eval --restore-model work_dirs/hq_micro_sam_l_specialist/epoch_11.pth
+```
+
+*Example HQ-Micro-SAM-L specialist visualization script for 5 testing Light Microscopy datasets*
+
+```
+torchrun --nproc_per_node=1 train_micro_LM_specialist.py --checkpoint ./pretrained_checkpoint/sam_vit_l_0b3195.pth --model-type vit_l --output work_dirs/hq_micro_sam_l_LM_specialist --eval --restore-model work_dirs/hq_micro_sam_l_LM_specialist/epoch_11.pth --visualize
+```
+
+### 4.2. To evaluate on 4 Electron Microscope datasets: *Working in Progress*
+
+```
+torchrun --nproc_per_node=<num_gpus> train_micro_EM.py --checkpoint <path/to/checkpoint> --model-type <model_type> --output <path/to/output> --eval --restore-model <path/to/training_checkpoint>
+```
+
+*Example HQ-Micro-SAM-L evaluation script for Electron Microscopy datasets*
+
+```
+torchrun --nproc_per_node=1 train_micro_EM.py --checkpoint ./pretrained_checkpoint/sam_vit_l_0b3195.pth --model-type vit_l --output work_dirs/hq_micro_sam_l_EM --eval --restore-model work_dirs/hq_micro_sam_l_EM/epoch_11.pth
+```
+
+*Example HQ-Micro-SAM-L visualization script for Electron Microscopy datasets*
+```
+torchrun --nproc_per_node=1 train_micro_EM.py --checkpoint ./pretrained_checkpoint/sam_vit_l_0b3195.pth --model-type vit_l --output work_dirs/hq_micro_sam_l_EM --eval --restore-model work_dirs/hq_micro_sam_l_EM/epoch_11.pth --visualize
+```
+
+
+### 4.3. To evaluate on 4 HQ-datasets
 
 ```
 python -m torch.distributed.launch --nproc_per_node=<num_gpus> train.py --checkpoint <path/to/checkpoint> --model-type <model_type> --output <path/to/output> --eval --restore-model <path/to/training_checkpoint>
 ```
 
-### Example HQ-SAM-L evaluation script
+*Example HQ-SAM-L evaluation script*
 ```
 python -m torch.distributed.launch --nproc_per_node=1 train.py --checkpoint ./pretrained_checkpoint/sam_vit_l_0b3195.pth --model-type vit_l --output work_dirs/hq_sam_l --eval --restore-model work_dirs/hq_sam_l/epoch_11.pth
 ```
 
-### Example HQ-SAM-L visualization script
+*Example HQ-SAM-L visualization script*
 ```
 python -m torch.distributed.launch --nproc_per_node=1 train.py --checkpoint ./pretrained_checkpoint/sam_vit_l_0b3195.pth --model-type vit_l --output work_dirs/hq_sam_l --eval --restore-model work_dirs/hq_sam_l/epoch_11.pth --visualize
 ```
